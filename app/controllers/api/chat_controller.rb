@@ -22,7 +22,7 @@ class Api::ChatController < ApplicationController
       timeout: params[:timeout] || 60
     )
     if @chat.save
-      render json: {"id" => @chat.id}, status: 201
+      render json: {id: @chat.id}, status: 201
     else
       render json: @chat.errors.full_messages, status: 422
     end
@@ -31,6 +31,6 @@ class Api::ChatController < ApplicationController
   private
 
   def update_expired
-    @chats.update_all(expired: true) if @chats
+    @chats.update_all(expired: true) unless @chats.empty?
   end
 end
