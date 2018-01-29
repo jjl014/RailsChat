@@ -1,6 +1,8 @@
 class Api::ChatController < ApplicationController
+  after_action :update_expired, only: [:index]
+
   def index
-    @chats = Chat.all
+    @chats = Chat.where("username = ? AND expired = false", params[:username])
     render :index
   end
 
@@ -24,5 +26,11 @@ class Api::ChatController < ApplicationController
     else
       render json: @chat.errors.full_messages, status: 422
     end
+  end
+
+  private
+
+  def update_expired
+    @chats.update_all(expired: true) if @chats
   end
 end
