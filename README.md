@@ -41,5 +41,5 @@ Otherwise, one of the main challenges was trying to use Redis with rails. I was 
 I was really disappointed that I wasn't able to figure out how to cache post request data, so that the data can exist in both the redis cache as well as the database.
 
 ## Future Directions
-* Save POST request data to redis cache as well as database
+* Save POST request data to Redis cache as well as database
 * Push Rails API server to Heroku and make use of their NGINX load balancer.
