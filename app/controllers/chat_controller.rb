@@ -2,7 +2,6 @@ class ChatController < ApplicationController
   after_action :update_expired, only: [:index]
 
   def index
-    # @chats = Chat.cached_chat(params[:username])
     @chats = Chat.where("username = ? AND expired = false", params[:username])
     render :index
   end
@@ -17,15 +16,10 @@ class ChatController < ApplicationController
   end
 
   def create
-    # @chat = Chat.new(
-    #   username: params[:username],
-    #   text: params[:text],
-    #   timeout: params[:timeout]
-    # )
-    @chat = Chat.cached_create_chat(
-      params[:username],
-      params[:text],
-      params[:timeout]
+    @chat = Chat.new(
+      username: params[:username],
+      text: params[:text],
+      timeout: params[:timeout]
     )
     if @chat.save
       render json: {id: @chat.id}, status: 201
@@ -36,6 +30,7 @@ class ChatController < ApplicationController
 
   private
 
+  # Update all the received chats to expired
   def update_expired
     @chats.update_all(expired: true) unless @chats.empty?
   end

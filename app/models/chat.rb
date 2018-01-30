@@ -20,11 +20,4 @@ class Chat < ApplicationRecord
       Chat.find(id)
     }
   end
-
-  def self.cached_create_chat(username, text, timeout)
-    Rails.cache.write( username, expires_in: timeout.to_i.seconds.to_i) {
-      chat = Chat.new(username: username, text: text, timeout: timeout)
-      chat
-    }
-  end
 end
