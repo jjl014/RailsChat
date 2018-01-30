@@ -1,6 +1,7 @@
 class ChatController < ApplicationController
   after_action :update_expired, only: [:index]
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
+
   def index
     @chats = Chat.where("username = ? AND expired = false", params[:username])
     render :index
