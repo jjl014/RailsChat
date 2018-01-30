@@ -11,9 +11,9 @@ In the directory run:
 ## Challenge Overview
 * Create an API chat service
 * Endpoints:
-  * POST /chat - creates a new text message for the entered username.
-  * GET /chat/:id - returns a message object given an id. Can return both expired and unexpired messages.
-  * GET /chats/:username - returns a list of unexpired texts for the username given. All received texts are then expired.
+  * `POST /chat` - creates a new text message for the entered username.
+  * `GET /chat/:id` - returns a message object given an id. Can return both expired and unexpired messages.
+  * `GET /chats/:username` - returns a list of unexpired texts for the username given. All received texts are then expired.
 
 ## Tools
 * `Ruby on Rails`
