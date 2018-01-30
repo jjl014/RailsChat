@@ -33,7 +33,9 @@ I moved the routes under the api namespace so that the default format would be j
 
 I added a callback to index action so that after it has been called, all the chats that were received from the query would have their expired column set to true. So future queries will ignore these chats, which was the intended functionality.
 
-Using Redis, I was able to save individual chats to the cache. Any additional requests with the same id won't query the database and instead pull its data from the cache.
+Using Redis, I was able to save individual messages to the cache. Any additional requests with the same id won't query the database and instead pull its data from the cache.
+
+I also was thinking about caching the queries where we get all the unexpired messages for a specific username. However, since we expire the messages after we receive them, it didn't make sense to cache them.
 
 ## Challenges
 I'm not sure if it's Rails or if it might just be me, but every time I restart the server, making a get request to 'chat/:id' would return an error. The error happens in the jbuilder file where accessing the 'timeout' property would return a private method error. However, there error goes away once a post request has been made.
