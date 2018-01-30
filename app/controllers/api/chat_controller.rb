@@ -20,7 +20,7 @@ class Api::ChatController < ApplicationController
     @chat = Chat.new(
       username: params[:username],
       text: params[:text],
-      timeout: params[:timeout]
+      timeout: params[:timeout] || 60
     )
     if @chat.save
       render json: {id: @chat.id}, status: 201
