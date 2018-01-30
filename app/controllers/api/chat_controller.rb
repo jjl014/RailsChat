@@ -2,12 +2,13 @@ class Api::ChatController < ApplicationController
   after_action :update_expired, only: [:index]
 
   def index
+    # @chats = Chat.cached_chat(params[:username])
     @chats = Chat.where("username = ? AND expired = false", params[:username])
     render :index
   end
 
   def show
-    @chat = Chat.find(params[:id])
+    @chat = Chat.cached_chat(params[:id])
     if @chat
       render :show, status: 200
     else
@@ -19,7 +20,7 @@ class Api::ChatController < ApplicationController
     @chat = Chat.new(
       username: params[:username],
       text: params[:text],
-      timeout: params[:timeout] || 60
+      timeout: params[:timeout]
     )
     if @chat.save
       render json: {id: @chat.id}, status: 201

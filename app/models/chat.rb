@@ -1,6 +1,10 @@
 class Chat < ApplicationRecord
   validates :username, :text, presence: true
+  validates :timeout, numericality: true
 
-  # scope :expired, where('created_at <= ?', Time.now() - self.timeout)
-  # scope :not_expired, where('created_at > ?', Time.now() - self.timeout)
+  def self.cached_chat(id)
+    Rails.cache.fetch([self,"chat-#{id}"], expires_in: 30.minutes.to_i) {
+      Chat.find(id)
+    }
+  end
 end
