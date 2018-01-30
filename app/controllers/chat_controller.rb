@@ -1,6 +1,6 @@
 class ChatController < ApplicationController
   after_action :update_expired, only: [:index]
-
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
   def index
     @chats = Chat.where("username = ? AND expired = false", params[:username])
     render :index
@@ -11,7 +11,7 @@ class ChatController < ApplicationController
     if @chat
       render :show, status: 200
     else
-      render text: "404 Not Found", status: 404
+      render plain: "404 Not Found", status: 404
     end
   end
 
@@ -26,6 +26,12 @@ class ChatController < ApplicationController
     else
       render json: @chat.errors.full_messages, status: 422
     end
+  end
+
+  protected
+
+  def not_found
+    render plain: "404 Not Found", status: 404
   end
 
   private
