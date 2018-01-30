@@ -15,8 +15,6 @@ In the directory run:
   * GET /chat/:id - returns a message object given an id. Can return both expired and unexpired messages.
   * GET /chats/:username - returns a list of unexpired texts for the username given. All received texts are then expired.
 
-## Functionality
-
 ## Tools
 * `Ruby on Rails`
 * Gems:
@@ -29,11 +27,11 @@ In the directory run:
 For debugging, I mainly used debugger and the rails console. As for testing, I used RSpec to test the Chat model's validations. For the controllers, I wasn't able to test it correctly since I kept getting a missing template error (possibly due to not having an actual html view), so I scrapped the controller tests.
 
 ## Design
-For the schema, I used the required columns(username, test, timeout) and also added a new column, expired, which is a boolean to keep track of chats that were already expired. That way, whenever we query the database, it will ignore all the chats that have been expired already.
+For the schema, I used the required columns(username, test, timeout) and also added a new column, expired, which is a boolean to keep track of chats that were already expired. That way, whenever we query the database, it will ignore all the chats that have been expired already. I also added indexing on the username column to speed up the queries.
 
-I also had wrote a callback where after the index action has been called, all the chats that were received from the query would have their expired column set to true. So future queries will ignore these chats, which was the intended functionality.
+I added a callback to index action so that after it has been called, all the chats that were received from the query would have their expired column set to true. So future queries will ignore these chats, which was the intended functionality.
 
-Using Redis, I was able to save individual chats to the cache. Any additional requests with the same id won't query the database.
+Using Redis, I was able to save individual chats to the cache. Any additional requests with the same id won't query the database and instead pull its data from the cache.
 
 ## Challenges
 I'm not sure if it's Rails or if it might just be me, but sometimes I would run into the issue where accessing a property of an active record object would return private method error.
