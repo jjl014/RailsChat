@@ -4,8 +4,8 @@
 In the directory run:
 
 * `bundle install`
-* `bundle exec rails db:migrate`
-* `rails s`
+* `bundle exec rails db:setup` OR `rails db:setup`
+* `rails s` OR `rails server`
 * Make requests to `localhost:3000`
 
 ## Challenge Overview
