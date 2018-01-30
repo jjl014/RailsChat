@@ -27,6 +27,8 @@ In the directory run:
 For debugging, I mainly used debugger and the rails console. As for testing, I used RSpec to test the Chat model's validations. For the controllers, I wasn't able to test it correctly since I kept getting a missing template error (possibly due to not having an actual html view), so I scrapped the controller tests.
 
 ## Design
+I decided to use Rails as my backend frame work and Postgresql as the database. I understand that there are probably better options that would be more efficient, but I chose to go with what I had more experience with.
+
 For the schema, I used the required columns(username, test, timeout) and also added a new column, expired, which is a boolean to keep track of chats that were already expired. That way, whenever we query the database, it will ignore all the chats that have been expired already. I also added indexing on the username column to speed up the queries.
 
 I moved the routes under the api namespace so that the default format would be json.
