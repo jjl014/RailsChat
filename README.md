@@ -24,6 +24,6 @@ In the directory run:
   * `pry-rails`
 
 ## Debugging and Testing
-
+For debugging, I mainly used debugger and the rails console.
 
 ## Design
