@@ -6,7 +6,7 @@ In the directory run:
 * `bundle install`
 * `bundle exec rails db:migrate`
 * `rails s`
-* Make requests to `localhost:3000/api/`
+* Make requests to `localhost:3000`
 
 ## Challenge Overview
 * Create an API chat service
