@@ -17,10 +17,15 @@ class Api::ChatController < ApplicationController
   end
 
   def create
-    @chat = Chat.new(
-      username: params[:username],
-      text: params[:text],
-      timeout: params[:timeout]
+    # @chat = Chat.new(
+    #   username: params[:username],
+    #   text: params[:text],
+    #   timeout: params[:timeout]
+    # )
+    @chat = Chat.cached_create_chat(
+      params[:username],
+      params[:text],
+      params[:timeout]
     )
     if @chat.save
       render json: {id: @chat.id}, status: 201
