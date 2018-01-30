@@ -1,4 +1,4 @@
-class ChatController < ApplicationController
+class Api::ChatController < ApplicationController
   after_action :update_expired, only: [:index]
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
@@ -20,7 +20,7 @@ class ChatController < ApplicationController
     @chat = Chat.new(
       username: params[:username],
       text: params[:text],
-      timeout: params[:timeout]
+      timeout: params[:timeout] || 60
     )
     if @chat.save
       render json: {id: @chat.id}, status: 201
