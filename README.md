@@ -22,8 +22,10 @@ In the directory run:
 * Gems:
   * `redis-rails`
   * `pry-rails`
+  * `rspec-rails`
+  * `annotate`
 
 ## Debugging and Testing
-For debugging, I mainly used debugger and the rails console.
+For debugging, I mainly used debugger and the rails console. As for testing, I used RSpec to test the Chat model's validations as well as the Chat controller.
 
 ## Design

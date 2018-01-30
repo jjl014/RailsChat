@@ -1,4 +1,4 @@
-class Api::ChatController < ApplicationController
+class ChatController < ApplicationController
   after_action :update_expired, only: [:index]
 
   def index
