@@ -24,7 +24,7 @@ In the directory run:
   * `annotate`
 
 ## Debugging and Testing
-For debugging, I mainly used debugger and the rails console. As for testing, I used RSpec to test the Chat model's validations. For the controllers, I wasn't able to test it correctly since I kept getting a missing template error (possibly due to not having an actual html view), so I scrapped the controller tests.
+For debugging, I mainly used debugger and the rails console. As for testing, I used RSpec to test the Chat model's validations. For the controllers, I wasn't able to test it correctly since I kept getting a missing template error (possibly due to not having an actual html view), so I moved on and tested the routes and the json responses through Postman.
 
 ## Design
 I decided to use Rails as my backend frame work and Postgresql as the database. I understand that there are probably better options that would be more efficient, but I chose to go with what I had more experience with.
@@ -49,5 +49,6 @@ Otherwise, one of the main challenges was trying to use Redis with rails. I was 
 I was really disappointed that I wasn't able to figure out how to cache post request data, so that the data can exist in both the redis cache as well as the database.
 
 ## Future Directions
-* Save POST request data to Redis cache as well as database
+* Save POST request data to Redis cache as well as database.
+* Write more tests.
 * Push Rails API server to Heroku and make use of their NGINX load balancer.
