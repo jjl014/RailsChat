@@ -24,7 +24,7 @@ In the directory run:
   * `annotate`
 
 ## Debugging and Testing
-For debugging, I mainly used debugger and the rails console. As for testing, I used RSpec to test the Chat model's validations. For the controllers, I wasn't able to test it correctly since I kept getting a missing template error (possibly due to not having an actual html view), so I moved on and tested the routes and the json responses through Postman.
+For debugging, I mainly used debugger and the rails console. As for testing, I used RSpec to test the Chat model's validations. For the controllers, I wasn't able to test it correctly since I kept getting a missing template error (possibly due to not having an actual html view). However, I was able to resolve this by doing a bit of research and added the key format with the value JSON to the get request in the test. I also manually tested the routes and the JSON responses through Postman.
 
 ## Design
 I decided to use Rails as my backend frame work and Postgresql as the database. I understand that there are probably better options that would be more efficient, but I chose to go with what I had more experience with.
