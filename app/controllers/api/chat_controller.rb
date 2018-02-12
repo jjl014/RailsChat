@@ -4,7 +4,7 @@ class Api::ChatController < ApplicationController
 
   def index
     @chats = Chat.where("username = ? AND expired = false", params[:username])
-    render :index
+    render :index, status: 200
   end
 
   def show
